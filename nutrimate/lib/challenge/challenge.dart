@@ -90,6 +90,9 @@ class ChallengeScreen extends StatelessWidget {
     {'name': 'John Doe', 'score': 200},
     {'name': 'Alice Smith', 'score': 180},
     {'name': 'Emma Johnson', 'score': 150},
+    {'name': 'David ', 'score': 100},
+    {'name': 'John Smith', 'score': 90},
+    {'name': 'Raj Singh', 'score': 50},
     // Add more data as needed
   ];
 

@@ -15,7 +15,7 @@ class _BotScreenState extends State<BotScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chatbot'),
+        title: Text('Nutribot'),
       ),
       body: Column(
         children: [

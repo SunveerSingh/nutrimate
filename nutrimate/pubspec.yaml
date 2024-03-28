@@ -42,6 +42,8 @@ dependencies:
   camera: ^0.10.5+9
   image_picker: ^1.0.7
   flutter_svg_provider: ^1.0.6
+  percent_indicator: ^4.2.3
+  syncfusion_flutter_charts: ^21.2.4
 
 dev_dependencies:
   flutter_test:

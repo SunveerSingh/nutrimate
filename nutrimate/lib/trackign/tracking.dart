@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class TrackingScreen extends StatefulWidget {
   const TrackingScreen({super.key});
@@ -9,45 +10,126 @@ class TrackingScreen extends StatefulWidget {
 }
 
 class _TrackingScreenState extends State<TrackingScreen> {
+  double goal = 84.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            "Hello, Gaurav!",
-            style: TextStyle(
-                color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            "Track You Progrss",
-            style: TextStyle(fontSize: 16),
-          ),
-          // Chart 1: Daily Nutrient Intake
-          Container(
-            height: 300,
-            padding: EdgeInsets.all(16),
-            child: charts.LineChart(
-              _createSampleData(),
-              animate: true,
-            ),
-          ),
-          // Chart 2: Weekly Progress
-          Container(
-            height: 300,
-            padding: EdgeInsets.all(16),
-            child: charts.BarChart(
-              _createSampleData2(),
-              animate: true,
-            ),
-          ),
-        ],
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text(
+          "Nutrimate",
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
       ),
-    ));
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  "Hello, Gaurav!",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "Track You Progrss",
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white),
+                  child: Column(
+                    children: [
+                      CircularPercentIndicator(
+                        radius: 120.0,
+                        lineWidth: 10.0,
+                        animation: true,
+                        percent: goal / 100,
+                        center: Text(
+                          goal.toString() + "%",
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black),
+                        ),
+                        backgroundColor: Colors.purple,
+                        circularStrokeCap: CircularStrokeCap.round,
+                        progressColor: Colors.green,
+                      ),
+                      Text(
+                        "Today's Goal",
+                        style: TextStyle(
+                            fontFamily: 'Varela',
+                            fontSize: 20,
+                            color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // Chart 1: Daily Nutrient Intake
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  height: 300,
+                  padding: EdgeInsets.all(20),
+                  child: charts.LineChart(
+                    _createSampleData(),
+                    animate: true,
+                  ),
+                ),
+
+                SizedBox(
+                  height: 10,
+                ),
+                // Chart 2: Weekly Progress
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  height: 300,
+                  padding: EdgeInsets.all(16),
+                  child: charts.BarChart(
+                    _createSampleData2(),
+                    animate: true,
+                  ),
+                ),
+              ]),
+        ),
+      ),
+    );
   }
 
   // Mock data for daily nutrient intake chart
